@@ -1,10 +1,7 @@
 {
-  "spriteId": {
-    "name": "sp_board_tile",
-    "path": "sprites/sp_board_tile/sp_board_tile.yy",
-  },
+  "spriteId": null,
   "solid": false,
-  "visible": true,
+  "visible": false,
   "managed": true,
   "spriteMaskId": null,
   "persistent": false,
@@ -32,7 +29,7 @@
     "path": "folders/Objects.yy",
   },
   "resourceVersion": "1.0",
-  "name": "ob_board_tile",
+  "name": "ob_piece_par",
   "tags": [],
   "resourceType": "GMObject",
 }
