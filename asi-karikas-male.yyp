@@ -7,9 +7,11 @@
     {"id":{"name":"ob_game","path":"objects/ob_game/ob_game.yy",},"order":4,},
     {"id":{"name":"ob_piece_white","path":"objects/ob_piece_white/ob_piece_white.yy",},"order":1,},
     {"id":{"name":"sp_piece_white","path":"sprites/sp_piece_white/sp_piece_white.yy",},"order":1,},
+    {"id":{"name":"ob_move_dot","path":"objects/ob_move_dot/ob_move_dot.yy",},"order":5,},
     {"id":{"name":"ob_piece_par","path":"objects/ob_piece_par/ob_piece_par.yy",},"order":3,},
     {"id":{"name":"sp_board_tile","path":"sprites/sp_board_tile/sp_board_tile.yy",},"order":0,},
     {"id":{"name":"sp_piece_black","path":"sprites/sp_piece_black/sp_piece_black.yy",},"order":2,},
+    {"id":{"name":"sp_move_dot","path":"sprites/sp_move_dot/sp_move_dot.yy",},"order":3,},
     {"id":{"name":"rm_game","path":"rooms/rm_game/rm_game.yy",},"order":0,},
   ],
   "Options": [

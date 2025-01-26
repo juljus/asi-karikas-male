@@ -1,5 +1,5 @@
-/// @description Insert description here
+/// @description Initialize
 // You can write your code in this editor
 
-image_speed = 0;
-screen_to_cubic(x, y);
+image_speed = 0; // Disable animation
+screen_to_cubic(x, y); // Get board coordinates
