@@ -5,7 +5,7 @@ if (player_to_move == player)
 {
 	instance_destroy(ob_move_dot);
 	if (selected_piece == id)
-		selected_piece = 0;
+		selected_piece = -1;
 	else
 	{
 		selected_piece = id;

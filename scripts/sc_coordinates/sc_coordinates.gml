@@ -52,5 +52,10 @@ function cubic_to_screen(q, r){
     var y1 = origin + hex_size * (1.75 / 2 * q + 1.75 * r);
 	
 	return [x1, y1];
- 
+}
+
+function move_to_position(){
+	/// Shortcut for pieces to move to correct position on screen
+	x = cubic_to_screen(ix, iy)[0];
+	y = cubic_to_screen(ix, iy)[1];
 }

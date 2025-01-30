@@ -136,21 +136,73 @@ function get_moves(){
 	}
 }
 
-function spot(dx, dy, dz){
+function spot(dx, dy, dz, to_capture=-1){
 	/// Mark the spot if available
 	/// Return spot object ID if created, otherwise 0
 	var free = get_free(dx, dy, dz)
 	var dot = 0;
-	if (free)
-	{
-		dot = instance_create_layer(
-			cubic_to_screen(ix+dx, iy+dy)[0],
-			cubic_to_screen(ix+dx, iy+dy)[1],
-			"Instances", ob_move_dot
-		);
+	if (free and id == selected_piece)
+	{	
+		if (move_validity(dx, dy, dz, to_capture))
+		{
+			// Create the mark if the move is valid
+			dot = instance_create_layer(
+				cubic_to_screen(ix+dx, iy+dy)[0],
+				cubic_to_screen(ix+dx, iy+dy)[1],
+				"Instances", ob_move_dot
+			);
+		}
 	}
 	return dot;
 }
+
+function move_validity(dx, dy, dz, to_capture=-1)
+{
+	/// Make sure the move doesn't put the king in danger
+	
+	if (to_capture)
+	{
+		other_id = to_capture;
+	}
+	else
+	{
+		var other_id = instance_position(
+			cubic_to_screen(ix+dx,iy+dy)[0],
+			cubic_to_screen(ix+dx,iy+dy)[1],
+			ob_piece_par
+		);
+	}
+	
+	// Move to desired spot
+	var prev_x = ix;
+	var prev_y = iy;
+	var prev_z = iz;
+	ix += dx;
+	iy += dy;
+	iz += dz;
+	move_to_position();
+	
+	//show_debug_message("ratata " + string(ix) + " " + string(iy) + " " + string(iz));
+	
+	with(other_id)
+		instance_deactivate_object(other_id);
+	
+	
+	// Check for danger to the king
+	var val = get_check();
+	//val = 0;
+	
+	instance_activate_object(other_id);
+	
+	// Move back and return the value
+	ix = prev_x;
+	iy = prev_y;
+	iz = prev_z;
+	move_to_position();
+	
+	return !val;
+}
+	
 
 function spot_loop(dx, dy, dz){
 	/// Repeated moves in one direction
@@ -194,7 +246,7 @@ function passant(own_x, own_y, own_z, other_x, other_y, dir){
 	and other_id.x == other_id.xstart and other_id.y = other_id.ystart + dir * 112)
 	{
 		// Mark the spot if en passant requirements are fulfilled
-		var dot = spot(own_x, own_y, own_z);
+		var dot = spot(own_x, own_y, own_z, other_id);
 		dot.to_capture = other_id; // Set the other pawn to be captured
 	}
 }
@@ -231,18 +283,21 @@ function get_free(dx, dy, dz){
 			if (player == other.player)
 			return 0;
 			else
-			return 1;
+			{
+				if (image_index == 5)
+				{
+					/// Can capture the king, check
+					check_temp = 1;
+				}
+				return 1;
+			}
 		}
 	}
-	
 	return 2;
 }
 
 function move(_x, _y, _z){
 	/// Move the piece to specified location
-	
-	last_moved_piece = id;
-	moves += 1;
 	
 	// Capture piece
 	with (ob_piece_par)
@@ -257,9 +312,11 @@ function move(_x, _y, _z){
 	ix = _x;
 	iy = _y;
 	iz = _z;
-	x = cubic_to_screen(ix, iy)[0];
-	y = cubic_to_screen(ix, iy)[1];
+	move_to_position();
 	
+	last_moved_piece = id;
+	selected_piece = 0;
+	moves += 1;
 	instance_destroy(ob_move_dot);
 	player_to_move = 3 - player_to_move;
 	
@@ -275,4 +332,48 @@ function move(_x, _y, _z){
 			image_index = 4;
 		}
 	}
+	
+	// Check for danger to the king
+	in_check = get_check();
+	
+	with (ob_piece_par)
+	{
+		if (player_to_move == player)
+		{
+			selected_piece = id;
+			get_moves();
+		}
+	}
+	
+	selected_piece = 0;
+	if (!instance_exists(ob_move_dot))
+		mate = 1;
+	instance_destroy(ob_move_dot);
+}
+
+function get_check(){
+	/// Check whether the king is under attack
+	
+	if (player_to_move == 1)
+	{
+		with(ob_piece_black)
+		{
+			check_temp = 0;
+			get_moves();
+			if (check_temp)
+				return true;
+		}
+	}
+	else if (player_to_move == 2)
+	{
+		with(ob_piece_white)
+		{
+			check_temp = 0;
+			get_moves();
+			if (check_temp)
+				return true;
+		}
+	}
+	
+	return false;
 }
