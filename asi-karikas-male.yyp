@@ -1,17 +1,23 @@
 {
   "resources": [
+    {"id":{"name":"ob_prompt","path":"objects/ob_prompt/ob_prompt.yy",},"order":9,},
     {"id":{"name":"sc_coordinates","path":"scripts/sc_coordinates/sc_coordinates.yy",},"order":0,},
     {"id":{"name":"ob_piece_black","path":"objects/ob_piece_black/ob_piece_black.yy",},"order":2,},
     {"id":{"name":"sc_movement","path":"scripts/sc_movement/sc_movement.yy",},"order":1,},
     {"id":{"name":"ob_board_tile","path":"objects/ob_board_tile/ob_board_tile.yy",},"order":0,},
+    {"id":{"name":"sp_button","path":"sprites/sp_button/sp_button.yy",},"order":4,},
     {"id":{"name":"ob_game","path":"objects/ob_game/ob_game.yy",},"order":4,},
+    {"id":{"name":"ob_menu","path":"objects/ob_menu/ob_menu.yy",},"order":6,},
     {"id":{"name":"ob_piece_white","path":"objects/ob_piece_white/ob_piece_white.yy",},"order":1,},
     {"id":{"name":"sp_piece_white","path":"sprites/sp_piece_white/sp_piece_white.yy",},"order":1,},
     {"id":{"name":"ob_move_dot","path":"objects/ob_move_dot/ob_move_dot.yy",},"order":5,},
     {"id":{"name":"ob_piece_par","path":"objects/ob_piece_par/ob_piece_par.yy",},"order":3,},
+    {"id":{"name":"rm_menu","path":"rooms/rm_menu/rm_menu.yy",},"order":1,},
     {"id":{"name":"sp_board_tile","path":"sprites/sp_board_tile/sp_board_tile.yy",},"order":0,},
     {"id":{"name":"sp_piece_black","path":"sprites/sp_piece_black/sp_piece_black.yy",},"order":2,},
+    {"id":{"name":"ob_text","path":"objects/ob_text/ob_text.yy",},"order":8,},
     {"id":{"name":"sp_move_dot","path":"sprites/sp_move_dot/sp_move_dot.yy",},"order":3,},
+    {"id":{"name":"ob_button","path":"objects/ob_button/ob_button.yy",},"order":7,},
     {"id":{"name":"rm_game","path":"rooms/rm_game/rm_game.yy",},"order":0,},
   ],
   "Options": [
@@ -32,6 +38,7 @@
     "children": [],
   },
   "RoomOrderNodes": [
+    {"roomId":{"name":"rm_menu","path":"rooms/rm_menu/rm_menu.yy",},},
     {"roomId":{"name":"rm_game","path":"rooms/rm_game/rm_game.yy",},},
   ],
   "Folders": [

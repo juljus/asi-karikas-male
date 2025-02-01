@@ -323,13 +323,16 @@ function move(_x, _y, _z){
 	// Pawn promotion
 	if (image_index == 0)
 	{
-		if (player == 1 and (iz == 5 or iy == -5))
+		if ((player == 1 and (iz == 5 or iy == -5))
+		or (player == 2 and (iz == -5 or iy == 5)))
 		{
-			image_index = 4;
-		}
-		if (player == 2 and (iz == -5 or iy == 5))
-		{
-			image_index = 4;
+			// Create prompt for promotion
+			instance_create_layer(
+				360, 360, 
+				"PromptBackground", 
+				ob_prompt,
+				{prompt : "promotion", other_id : id}
+			);
 		}
 	}
 	
