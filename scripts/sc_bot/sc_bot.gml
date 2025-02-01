@@ -89,7 +89,9 @@ function get_best_move(color) {
 
     show_debug_message(evaluate_position(color, white_pieces, black_pieces));
 	
-	var retval = [one_piece_moves[irandom(array_length(one_piece_moves) - 1)][0], one_piece_moves[irandom(array_length(one_piece_moves) - 1)][0]];
+	var sel_piece = irandom(array_length(one_piece_moves) - 1);
+	
+	var retval = [one_piece_moves[sel_piece][0], one_piece_moves[sel_piece][1]];
 	
     return retval;
 }
@@ -603,6 +605,7 @@ function is_checked(color) {
             }
         }
     }
+	
     
     return false;
 }

@@ -302,7 +302,7 @@ function move(_x, _y, _z){
 	// Capture piece
 	with (ob_piece_par)
 	{
-		if (ix == _x and iy == _y and iz == _z)
+		if (ix == _x and iy == _y and iz == _z and player != other.player)
 		{
 			instance_destroy();
 		}
@@ -352,6 +352,10 @@ function move(_x, _y, _z){
 	if (!instance_exists(ob_move_dot))
 		mate = 1;
 	instance_destroy(ob_move_dot);
+	
+	if (global.use_bot and ((global.play_as_white and global.player_to_move == 2) 
+		or (!global.play_as_white and global.player_to_move == 1)))
+		ob_game.alarm[0] = 3;
 }
 
 function get_check(){

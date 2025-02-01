@@ -9,3 +9,7 @@ last_moved_piece = -1;
 in_check = 0;
 check_temp = 0;
 mate = 0;
+
+// Start with bot
+if (global.use_bot and !global.play_as_white)
+	alarm[0] = 3;
